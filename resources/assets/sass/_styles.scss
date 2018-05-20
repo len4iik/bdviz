@@ -1,0 +1,218 @@
+body {
+    font-size: 13px;
+}
+
+input[type=radio] {
+    margin-right: 10px;
+}
+
+.app {
+    position: relative;
+
+    &::before {
+        background-image: url(http://bdviz.host/img/db-background.png);
+        background-position: 50% 0;
+        background-repeat: no-repeat;
+        background-size: cover;
+        content: ' ';
+        display: block;
+        height: 100%;
+        left: 0;
+        opacity: 0.6;
+        position: absolute;
+        top: 0;
+        width: 100%;
+    }
+}
+
+.converted {
+    color: cornflowerblue;
+}
+
+.viz-selection {
+    align-items: stretch;
+    display: flex;
+
+    @media(max-width: 768px)  {
+        flex-direction: column;
+    }
+}
+
+.viz-radio {
+    flex: 1;
+    padding: 20px;
+
+    .image-box {
+        flex: 1;
+        position: relative;
+    }
+
+    input {
+        display: none;
+
+        &:checked + label .image-box
+        {
+            display: block;
+
+            &::before {
+                background: rgba(0, 0, 0, .5);
+                content: '';
+                display: block;
+                height: 100%;
+                position: absolute;
+                width: 100%;
+
+            }
+
+            &::after {
+                content: '\2713';
+                display: block;
+                color: green;
+                font-size: 50px;
+                left: 0;
+                position: absolute;
+                right: 0;
+                text-align: center;
+                top: 50%;
+                transform: translateY(-50%);
+            }
+        }
+    }
+
+    label {
+        display: flex;
+        flex-direction: column;
+        height: 100%;
+
+        span {
+            text-align: center;
+        }
+    }
+
+
+    .centered-img-wrapper {
+        display: block;
+        height: 100%;
+        position: relative;
+        width: 100%;
+    }
+
+    img {
+        display: block;
+        max-width: 100%;
+
+        @media(max-width: 768px)  {
+            max-width: 200px;
+        }
+    }
+}
+
+path {
+    stroke: #fff;
+}
+
+.node {
+    box-sizing: border-box;
+    position: absolute;
+    overflow: hidden;
+
+    circle {
+        fill: #999;
+    }
+
+    text {
+        font: 10px sans-serif;
+    }
+}
+
+.node--internal circle {
+    fill: #555;
+}
+
+.node--internal text {
+    text-shadow: 0 1px 0 #fff, 0 -1px 0 #fff, 1px 0 0 #fff, -1px 0 0 #fff;
+}
+
+.link {
+    fill: none;
+    stroke: #555;
+    stroke-opacity: 0.4;
+    stroke-width: 1.5px;
+}
+
+.node--leaf {
+    fill: white;
+}
+
+.slice {
+    cursor: pointer;
+}
+
+.slice .main-arc {
+    stroke: #fff;
+    stroke-width: 1px;
+}
+
+.slice .hidden-arc {
+    fill: none;
+    stroke: none;
+}
+
+.slice text {
+    pointer-events: none;
+    dominant-baseline: middle;
+    text-anchor: middle;
+}
+
+.background path {
+    fill: none;
+    stroke: #ddd;
+    shape-rendering: crispEdges;
+}
+
+.foreground path {
+    fill: none;
+    stroke: steelblue;
+}
+
+.brush .selection {
+    fill-opacity: .3;
+    stroke: #fff;
+    shape-rendering: crispEdges;
+}
+
+.axis line,
+.axis path {
+    fill: none;
+    stroke: #000;
+    shape-rendering: crispEdges;
+}
+
+.axis text {
+    text-shadow: 0 1px 0 #fff, 1px 0 0 #fff, 0 -1px 0 #fff, -1px 0 0 #fff;
+    cursor: move;
+}
+
+.axis .title {
+    font-size: 11px;
+    font-weight: bold;
+    text-transform: uppercase;
+}
+
+.label {
+    -webkit-transition: fill 125ms linear;
+}
+
+.active .label:not(.inactive) {
+    font-weight: bold;
+}
+
+.label.inactive {
+    fill: #ccc;
+}
+
+.foreground path.inactive {
+    stroke: #ccc;
+    stroke-opacity: .5;
+    stroke-width: 1px;
+}
